@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <title>find</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../main.css">
+</head>
+
+<body>
+<h2>Поиск ранобе</h2>
+<div>
+    <a href="../../title"><--</a>
+</div>
+
+<form method="post">
+    <label>
+        <input name="originalTitle" size="50" {{#ranobe}} value="{{ranobe.originalTitle}}" {{/ranobe}} required>
+        <input value="Поиск" type="submit">
+    </label>
+</form>
+
+<table class="wide">
+    <tr>
+        <th>ID</th>
+        <th>NameEn</th>
+        <th>NameRu</th>
+        <th>Score</th>
+        <th>chapters</th>
+    </tr>
+
+    {{#list}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{russian}}</td>
+            <td>{{score}}</td>
+            <td>{{chapters}}</td>
+            <td>
+                <form method="post" action="./save">
+                    <label>
+                        <input name="ranobeId" value="{{id}}">
+                        <input value="Добавить" type="submit">
+                    </label>
+                </form>
+            </td>
+        </tr>
+    {{/list}}
+</table>
+
+</body>
+
+</html>

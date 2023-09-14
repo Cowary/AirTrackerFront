@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <title>find</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../main.css">
+</head>
+
+<body>
+    <h2>Поиск аниме</h2>
+    <div>
+        <a href="../../title"><--</a>
+    </div>
+
+    <form method="post">
+        <label>
+            <input name="originalTitle" {{#anime}} value="{{anime.originalTitle}}" {{/anime}} required size="50">
+            <input value="Поиск" type="submit">
+        </label>
+    </form>
+    <table class="wide">
+        <tr>
+            <th>NameEn</th>
+            <th>NameRu</th>
+            <th>Score</th>
+            <th>Episodes</th>
+        </tr>
+
+        {{#list}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{russian}}</td>
+                <td>{{score}}</td>
+                <td>{{episodes}}</td>
+                <td>
+                    <form method="post" action="./saveAnime">
+                        <label>
+                            <input name="animeId" value="{{id}}" hidden>
+                            <input value="Добавить" type="submit">
+                        </label>
+                    </form>
+                </td>
+            </tr>
+        {{/list}}
+    </table>
+
+</body>
+
+</html>
