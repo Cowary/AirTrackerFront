@@ -1,3 +1,5 @@
+package org.cowary.arttrackerfront;
+
 import com.samskivert.mustache.Mustache;
 import org.cowary.arttrackerfront.util.DateFormat;
 import org.springframework.boot.SpringApplication;
