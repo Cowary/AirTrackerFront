@@ -1,8 +1,11 @@
 package org.cowary.arttrackerfront.controller.list;
 
 import org.cowary.arttrackerfront.config.UserService;
+import org.cowary.arttrackerfront.entity.User;
 import org.cowary.arttrackerfront.service.AnimeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +24,8 @@ public class MediaListController {
     @GetMapping("/title/view/media")
     public String get(@RequestParam(required = false, defaultValue = "") String status,
                       Model model) throws MalformedURLException {
-
+        var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user);
 
         var mediaList = animeService.getAllByUsrId(3);
         System.out.println(mediaList);

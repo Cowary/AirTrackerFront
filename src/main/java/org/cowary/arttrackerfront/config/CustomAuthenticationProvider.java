@@ -19,6 +19,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         User user = new User();
         user.setUsername("ruderu");
         user.setPassword("123");
+        user.setToken("token+test");
         if (user == null) {
             throw new BadCredentialsException("Unknown user " + userName);
         }

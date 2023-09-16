@@ -11,8 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-    @Autowired
-    EncoderConfig encoderConfig;
+
     @Autowired
     CustomAuthenticationProvider customAuthenticationProvider;
 
