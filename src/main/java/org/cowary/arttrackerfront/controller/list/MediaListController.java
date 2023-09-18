@@ -3,6 +3,7 @@ package org.cowary.arttrackerfront.controller.list;
 import org.cowary.arttrackerfront.config.UserService;
 import org.cowary.arttrackerfront.entity.User;
 import org.cowary.arttrackerfront.service.AnimeService;
+import org.cowary.arttrackerfront.service.MediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,7 @@ import java.net.MalformedURLException;
 public class MediaListController {
 
     @Autowired
-    AnimeService animeService;
+    MediaService mediaService;
 
 
     @GetMapping("/title/view/media")
@@ -27,7 +28,7 @@ public class MediaListController {
         var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(user);
 
-        var mediaList = animeService.getAllByUsrId(3);
+        var mediaList = mediaService.getAllByUsrId(3);
         System.out.println(mediaList);
 
 
@@ -45,7 +46,7 @@ public class MediaListController {
 //                .collect(Collectors.toList());
 
         model.addAttribute("mediaList", mediaList);
-        model.addAttribute("");
+        model.addAttribute("nickname", "ruderu");
         return "media/view/mediaList";
     }
 

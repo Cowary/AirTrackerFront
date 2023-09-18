@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -19,6 +20,18 @@ public class Media {
     private String status;
     private Date endDate;
     private Long usrId;
+    private Long id;
+    private String originalTitle;
+    private String title;
+    private Integer episodes;
+    private Integer score;
+    private Date releaseDate;
+    private Integer releaseYear;
+    private Long shikiId;
+    private Integer duration;
+    private Integer episodesEnd;
+    private Date lastUpd;
+    private String type;
 
     @JsonIgnore
     Comparator<Media> comparator = new Comparator<Media>() {
