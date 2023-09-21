@@ -29,22 +29,6 @@ public class MediaListController {
         System.out.println(user);
 
         var mediaList = mediaService.getAllByUsrId(3);
-        System.out.println(mediaList);
-
-
-//        List<Media> mediaList = new ArrayList<>();
-//        mediaList.addAll(animeCrud.getAll(status));
-//        mediaList.addAll(mangaCrud.getAll(status));
-//        mediaList.addAll(ranobeVolumeCrud.getAll(status));
-//        mediaList.addAll(movieCrud.getAll(status));
-//        mediaList.addAll(gameCrud.getAll(status));
-//        mediaList.addAll(bookCrud.getAll(status));
-//        mediaList.addAll(tvSeasonsCrud.getAll(status));
-//
-//        mediaList = mediaList.stream()
-//                .sorted((o1, o2) -> new Media().getComparator().compare(o1, o2))
-//                .collect(Collectors.toList());
-
         model.addAttribute("mediaList", mediaList);
         model.addAttribute("nickname", "ruderu");
         return "media/view/mediaList";
