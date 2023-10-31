@@ -1,6 +1,8 @@
 package org.cowary.arttrackerfront.config;
 
 import org.cowary.arttrackerfront.entity.User;
+import org.cowary.arttrackerfront.service.ConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,15 +13,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
+    @Autowired
+    ConfigService configService;
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String userName = authentication.getName();
         String password = authentication.getCredentials().toString();
 
         User user = new User();
-        user.setUsername("ruderu");
-        user.setPassword("123");
-        user.setToken("token+test");
+        user.setUsername(userName);
+        user.setPassword(password);
+        var token = configService.getJwtToken(userName, password);
+        user.setToken(token.getToken());
         if (user == null) {
             throw new BadCredentialsException("Unknown user " + userName);
         }
@@ -28,7 +34,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
         System.out.println("SUCCESS");
         return new UsernamePasswordAuthenticationToken(
-                user, password, user.getAuthorities()
+                user, token, user.getAuthorities()
         );
 
     }

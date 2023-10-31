@@ -1,10 +1,7 @@
 package org.cowary.arttrackerfront.util;
 
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.cowary.arttrackerfront.entity.User;
+import org.springframework.http.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -37,12 +34,19 @@ public class RestTemp {
     }
 
     public <T> ResponseEntity<T> get(String url, HttpHeaders headers, Class<T> responseType) {
-//        headers.setBearerAuth(SecurityContextHolder.getContext().getAuthentication().getDetails().toString());
-        headers.setBearerAuth("eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJydWRlcnUiLCJpYXQiOjE2OTUzMjI3MjIsImV4cCI6MTY5NTMzMjcyMn0.fcUdabRnUJZM7TEW_qag9xIrPmv4PGqNBkJQQll4phZU3e8nSAcb82sQsHSpnK9VZnEdMp9dAFs0x8l0HpcD6w");
+        var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        headers.setBearerAuth(user.getToken());
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
         return restTemplate.exchange(
                 url, HttpMethod.GET, httpEntity, responseType
         );
+    }
+
+    public <T, K> ResponseEntity<T> post(String url, K body, Class<T> responseType) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<K> request = new HttpEntity<>(body, headers);
+        return restTemplate.postForEntity(url, request, responseType);
     }
 
 
