@@ -24,8 +24,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         User user = new User();
         user.setUsername(userName);
         user.setPassword(password);
-        var token = configService.getJwtToken(userName, password);
-        user.setToken(token.getToken());
+        var userRs = configService.getJwtToken(userName, password);
+        user.setToken(userRs.getToken());
+        user.setId(userRs.getId());
         if (user == null) {
             throw new BadCredentialsException("Unknown user " + userName);
         }
@@ -34,7 +35,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
         System.out.println("SUCCESS");
         return new UsernamePasswordAuthenticationToken(
-                user, token, user.getAuthorities()
+                user, userRs, user.getAuthorities()
         );
 
     }

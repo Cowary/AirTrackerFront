@@ -5,8 +5,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SystemUtil {
 
-    public static Integer getUserid() {
+    public static Long getUserid() {
         var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return 3;
+        return user.getId();
     }
 }

@@ -1,0 +1,4 @@
+/target/
+/.idea/
+/src/main/resources/WEB-INF
+/src/main/resources/config

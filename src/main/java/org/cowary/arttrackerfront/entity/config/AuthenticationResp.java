@@ -6,4 +6,5 @@ import lombok.Data;
 public class AuthenticationResp {
 
     private String token;
+    private Long id;
 }
