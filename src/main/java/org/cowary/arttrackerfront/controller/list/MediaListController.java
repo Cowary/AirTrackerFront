@@ -1,6 +1,7 @@
 package org.cowary.arttrackerfront.controller.list;
 
 import org.cowary.arttrackerfront.service.MediaService;
+import org.cowary.arttrackerfront.util.SystemUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +17,10 @@ public class MediaListController {
     @Autowired
     MediaService mediaService;
 
-
     @GetMapping("/title/view/media")
     public String get(@RequestParam(required = false, defaultValue = "") String status,
                       Model model) throws MalformedURLException {
-        var mediaList = mediaService.getAllByUsrId(3);
+        var mediaList = mediaService.getAllByUsrId(SystemUtil.getUserid(), status);
         model.addAttribute("mediaList", mediaList);
         model.addAttribute("nickname", "ruderu");
         return "media/view/mediaList";

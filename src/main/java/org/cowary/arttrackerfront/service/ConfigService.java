@@ -15,7 +15,6 @@ public class ConfigService {
     private final String PATH = "/api/auth/signin";
 
     public AuthenticationResp getJwtToken(String login, String password) {
-        System.out.println(Config.getBackUrl() + PATH);
         var response = restTemp.post(Config.getBackUrl() + PATH, new AuthenticationReq(login, password), AuthenticationResp.class);
         System.out.println(response);
         return response.getBody();

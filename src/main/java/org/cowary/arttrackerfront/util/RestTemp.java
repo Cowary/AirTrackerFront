@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URL;
+import java.util.Map;
 
 @Component
 public class RestTemp {
@@ -39,6 +40,15 @@ public class RestTemp {
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
         return restTemplate.exchange(
                 url, HttpMethod.GET, httpEntity, responseType
+        );
+    }
+
+    public <T> ResponseEntity<T> get(String url, HttpHeaders headers, Map<String, ?> params, Class<T> responseType) {
+        var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        headers.setBearerAuth(user.getToken());
+        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+        return restTemplate.exchange(
+                url, HttpMethod.GET, httpEntity, responseType, params
         );
     }
 
