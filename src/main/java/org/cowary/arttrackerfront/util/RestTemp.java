@@ -43,6 +43,16 @@ public class RestTemp {
         );
     }
 
+    public <T> ResponseEntity<T> get(String url, Class<T> responseType, Map<String, ?> params) {
+        var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(user.getToken());
+        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+        return restTemplate.exchange(
+                url, HttpMethod.GET, httpEntity, responseType, params
+        );
+    }
+
     public <T> ResponseEntity<T> get(String url, HttpHeaders headers, Map<String, ?> params, Class<T> responseType) {
         var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         headers.setBearerAuth(user.getToken());
