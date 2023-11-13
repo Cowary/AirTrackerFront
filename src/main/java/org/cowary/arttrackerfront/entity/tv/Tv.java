@@ -20,18 +20,15 @@ public class Tv extends Media {
     private String originalTitle;
     private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date releaseDate;
     private Integer releaseYear;
     private String status;
     private Integer score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date endDate;
     private Integer seasons;
     private Integer seasonsEnd;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date lastUpd;
     private Long usrId;
     

@@ -43,6 +43,16 @@ public class RestTemp {
         );
     }
 
+    public <T> ResponseEntity<T> get(String url, Class<T> responseType) {
+        var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(user.getToken());
+        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+        return restTemplate.exchange(
+                url, HttpMethod.GET, httpEntity, responseType
+        );
+    }
+
     public <T> ResponseEntity<T> get(String url, Class<T> responseType, Map<String, ?> params) {
         var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HttpHeaders headers = new HttpHeaders();
@@ -67,6 +77,20 @@ public class RestTemp {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<K> request = new HttpEntity<>(body, headers);
         return restTemplate.postForEntity(url, request, responseType);
+    }
+
+    public <T, K> ResponseEntity<T> put(String url, K body, Class<T> responseType) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<K> request = new HttpEntity<>(body, headers);
+        return restTemplate.exchange(url, HttpMethod.PUT, request, responseType);
+    }
+
+    public <T, K> ResponseEntity<T> delete(String url, Map<String, ?> param, Class<T> responseType) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<K> request = new HttpEntity<>(headers);
+        return restTemplate.exchange(url, HttpMethod.DELETE, request, responseType, param);
     }
 
 

@@ -20,17 +20,14 @@ public class Movie extends Media {
     private String originalTitle;
     private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date releaseDate;
     private Integer releaseYear;
     private Integer duration;
     private String status;
     private Integer score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date endDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date lastUpd;
     private Long usrId;
     

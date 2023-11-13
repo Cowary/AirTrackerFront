@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class AnimeService implements FindService<Anime> {
+public class AnimeService implements FindService<Anime>, MediaService<Anime> {
 
     @Autowired
     RestTemp restTemp;
@@ -37,6 +37,38 @@ public class AnimeService implements FindService<Anime> {
     public Anime getByMediaId(long id) {
         var response = restTemp.get(
                 PATH + "/getByServiceId", Anime.class, Map.of("id", id)
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public Anime getMedia(long titleId) {
+        var response = restTemp.get(
+                PATH + "/" + titleId, Anime.class
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public Anime postMedia(Anime media) {
+        var response = restTemp.post(
+                PATH, media, Anime.class
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public Anime putMedia(Anime media) {
+        var response = restTemp.put(
+                PATH, media, Anime.class
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public String deleteMedia(long id) {
+        var response = restTemp.delete(
+                PATH, Map.of("id", id), String.class
         );
         return response.getBody();
     }

@@ -1,37 +1,37 @@
 package org.cowary.arttrackerfront.service;
 
-import org.cowary.arttrackerfront.entity.game.Game;
+import org.cowary.arttrackerfront.entity.book.Book;
 import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
-public class GameService implements MediaService<Game> {
+public class BookService implements MediaService<Book> {
 
     @Autowired
     RestTemp restTemp;
-    private final String PATH = "/title/game";
+    private final String PATH = "/title/book";
 
     @Override
-    public Game getMedia(long titleId) {
+    public Book getMedia(long titleId) {
         var response = restTemp.get(
-                PATH + "/" + titleId, Game.class
+                PATH + "/" + titleId, Book.class
         );
         return response.getBody();
     }
 
     @Override
-    public Game postMedia(Game media) {
+    public Book postMedia(Book media) {
         var response = restTemp.post(
-                PATH, media, Game.class
+                PATH, media, Book.class
         );
         return response.getBody();
     }
 
     @Override
-    public Game putMedia(Game media) {
+    public Book putMedia(Book media) {
         var response = restTemp.put(
-                PATH, media, Game.class
+                PATH, media, Book.class
         );
         return response.getBody();
     }

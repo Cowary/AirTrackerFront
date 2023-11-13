@@ -24,10 +24,8 @@ public class Anime extends Media {
     private String status;
     private Integer score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date endDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date releaseDate;
     private Integer releaseYear;
     private Long shikiId;

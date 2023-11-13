@@ -1,6 +1,6 @@
 package org.cowary.arttrackerfront.controller.list;
 
-import org.cowary.arttrackerfront.service.MediaService;
+import org.cowary.arttrackerfront.service.MediaListServiceImlp;
 import org.cowary.arttrackerfront.util.SystemUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PlayListController {
 
     @Autowired
-    private MediaService mediaService;
+    private MediaListServiceImlp mediaListServiceImlp;
 
     @GetMapping("title/view/play")
     public String get(@RequestParam(required = false, defaultValue = "") String status,
                       Model model) {
-        var mediaList = mediaService.getPlayListByUserId(SystemUtil.getUserid(), status);
+        var mediaList = mediaListServiceImlp.getPlayListByUserId(SystemUtil.getUserid(), status);
         model.addAttribute("mediaList", mediaList);
         model.addAttribute("nickname", "ruderu");
         return "media/view/play";

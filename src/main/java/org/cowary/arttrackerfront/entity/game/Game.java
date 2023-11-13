@@ -19,16 +19,13 @@ public class Game extends Media {
     private Long id;
     private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date endDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date releaseDate;
     private Integer releaseYear;
     private Integer score;
     private String status;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date lastUpd;
     private Long usrId;
     

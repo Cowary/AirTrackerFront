@@ -25,17 +25,14 @@ public class Ranobe extends Media {
     private String status;
     private Integer score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date releaseDate;
     private Integer releaseYear;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date endDate;
     private Long shikiId;
     private Integer volumesEnd;
     private Integer chaptersEnd;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date lastUpd;
     private Long usrId;
     

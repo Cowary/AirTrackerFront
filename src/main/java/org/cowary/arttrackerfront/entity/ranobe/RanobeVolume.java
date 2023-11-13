@@ -23,26 +23,18 @@ public class RanobeVolume extends Media {
     private String status;
     private Integer score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date endDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date lastUpd;
     private Long ranobeId;
     private Long usrId;
-    
     private String originalTitle;
-    
     private Integer volumes;
-    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date releaseDate;
-    
     private Integer releaseYear;
-    
     private Integer volumesEnd;
-    
+
     private static final String type = "Ranobe";
 
     public void setCommonField(Ranobe ranobe) {

@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.cowary.arttrackerfront.entity.Media;
-import org.cowary.arttrackerfront.entity.Media;
 import org.cowary.arttrackerfront.util.DateUtil;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,7 +13,6 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-
 public class Manga extends Media {
 
     private Long id;
@@ -25,17 +23,14 @@ public class Manga extends Media {
     private String status;
     private Integer score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date releaseDate;
     private Integer releaseYear;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date endDate;
     private Long shikiId;
     private Integer volumesEnd;
     private Integer chaptersEnd;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date lastUpd;
     private Long usrId;
     

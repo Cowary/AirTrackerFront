@@ -23,25 +23,16 @@ public class TvSeason extends Media {
     private String status;
     private Integer score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date endDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date lastUpd;
     private Long tvId;
     private Long usrId;
-
-    
     private String originalTitle;
-    
     private Integer seasons;
-    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date releaseDate;
-    
     private Integer releaseYear;
-    
     private Integer seasonsEnd;
     
     private static final String type = "Tv";
