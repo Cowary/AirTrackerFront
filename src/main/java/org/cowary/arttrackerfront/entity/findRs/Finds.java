@@ -2,9 +2,11 @@ package org.cowary.arttrackerfront.entity.findRs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Finds {
 
     private String nameEn;
@@ -12,5 +14,5 @@ public class Finds {
     private String score;
     private Integer episodes;
     private Integer year;
-    private Integer shikiId;
+    private Integer integrationId;
 }

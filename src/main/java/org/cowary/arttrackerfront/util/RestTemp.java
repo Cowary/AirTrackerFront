@@ -58,6 +58,7 @@ public class RestTemp {
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(user.getToken());
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+
         return restTemplate.exchange(
                 url, HttpMethod.GET, httpEntity, responseType, params
         );

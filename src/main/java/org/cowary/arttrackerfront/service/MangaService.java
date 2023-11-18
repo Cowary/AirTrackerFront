@@ -54,9 +54,17 @@ public class MangaService implements MediaService<Manga>, FindService<Manga> {
     }
 
     @Override
-    public Manga getByMediaId(long id) {
+    public Manga findByIntegrationId(long id) {
         var response = restTemp.get(
                 PATH + "/getByServiceId", Manga.class, Map.of("id", id)
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public String getPosterUrl(int id) {
+        var response = restTemp.get(
+                PATH + "/getPoster", String.class, Map.of("id", id)
         );
         return response.getBody();
     }

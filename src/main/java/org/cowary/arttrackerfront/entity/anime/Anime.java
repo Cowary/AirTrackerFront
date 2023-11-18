@@ -32,7 +32,6 @@ public class Anime extends Media {
     private Integer duration;
     private Integer episodesEnd;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     private Date lastUpd;
     private Long usrId;
     

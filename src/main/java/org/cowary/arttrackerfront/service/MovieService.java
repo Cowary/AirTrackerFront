@@ -54,9 +54,17 @@ public class MovieService implements MediaService<Movie>, FindService<Movie> {
     }
 
     @Override
-    public Movie getByMediaId(long id) {
+    public Movie findByIntegrationId(long id) {
         var response = restTemp.get(
                 PATH + "/getByServiceId", Movie.class, Map.of("id", id)
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public String getPosterUrl(int id) {
+        var response = restTemp.get(
+                PATH + "/getPoster", String.class, Map.of("id", id)
         );
         return response.getBody();
     }

@@ -54,9 +54,17 @@ public class RanobeService implements MediaService<Ranobe>, FindService<Ranobe> 
     }
 
     @Override
-    public Ranobe getByMediaId(long id) {
+    public Ranobe findByIntegrationId(long id) {
         var response = restTemp.get(
                 PATH + "/getByServiceId", Ranobe.class, Map.of("id", id)
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public String getPosterUrl(int id) {
+        var response = restTemp.get(
+                PATH + "/getPoster", String.class, Map.of("id", id)
         );
         return response.getBody();
     }

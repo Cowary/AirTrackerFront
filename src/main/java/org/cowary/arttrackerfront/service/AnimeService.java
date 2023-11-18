@@ -7,6 +7,7 @@ import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,8 @@ import java.util.Map;
 public class AnimeService implements FindService<Anime>, MediaService<Anime> {
 
     @Autowired
-    RestTemp restTemp;
-    private final String PATH = "/title/anime";
+    private RestTemp restTemp;
+    private final String PATH = Config.getBackUrl() + "/title/anime";
 
     public List<Anime> getAllByUsrId(long userId) {
         HttpHeaders headers = new HttpHeaders();
@@ -27,16 +28,28 @@ public class AnimeService implements FindService<Anime>, MediaService<Anime> {
 
     @Override
     public FindMediaRs find(String keyword) {
+        var uri = UriComponentsBuilder.fromUriString(PATH + "/find")
+                .queryParam("keyword", keyword)
+                .build()
+                .toString();
         var response = restTemp.get(
-                PATH + "/find", FindMediaRs.class, Map.of("keyword", keyword)
+                uri, FindMediaRs.class
         );
         return response.getBody();
     }
 
     @Override
-    public Anime getByMediaId(long id) {
+    public Anime findByIntegrationId(long id) {
         var response = restTemp.get(
-                PATH + "/getByServiceId", Anime.class, Map.of("id", id)
+                 PATH + "/getByServiceId", Anime.class, Map.of("id", id)
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public String getPosterUrl(int id) {
+        var response = restTemp.get(
+                 PATH + "/getPoster", String.class, Map.of("id", id)
         );
         return response.getBody();
     }
@@ -44,7 +57,7 @@ public class AnimeService implements FindService<Anime>, MediaService<Anime> {
     @Override
     public Anime getMedia(long titleId) {
         var response = restTemp.get(
-                PATH + "/" + titleId, Anime.class
+                 PATH + "/" + titleId, Anime.class
         );
         return response.getBody();
     }
@@ -52,7 +65,7 @@ public class AnimeService implements FindService<Anime>, MediaService<Anime> {
     @Override
     public Anime postMedia(Anime media) {
         var response = restTemp.post(
-                PATH, media, Anime.class
+                 PATH, media, Anime.class
         );
         return response.getBody();
     }
@@ -60,7 +73,7 @@ public class AnimeService implements FindService<Anime>, MediaService<Anime> {
     @Override
     public Anime putMedia(Anime media) {
         var response = restTemp.put(
-                PATH, media, Anime.class
+                 PATH, media, Anime.class
         );
         return response.getBody();
     }
@@ -68,7 +81,7 @@ public class AnimeService implements FindService<Anime>, MediaService<Anime> {
     @Override
     public String deleteMedia(long id) {
         var response = restTemp.delete(
-                PATH, Map.of("id", id), String.class
+                 PATH, Map.of("id", id), String.class
         );
         return response.getBody();
     }

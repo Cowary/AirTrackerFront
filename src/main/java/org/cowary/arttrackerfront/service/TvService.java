@@ -54,9 +54,17 @@ public class TvService implements MediaService<Tv>, FindService<Tv> {
     }
 
     @Override
-    public Tv getByMediaId(long id) {
+    public Tv findByIntegrationId(long id) {
         var response = restTemp.get(
                 PATH + "/getByServiceId", Tv.class, Map.of("id", id)
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public String getPosterUrl(int id) {
+        var response = restTemp.get(
+                PATH + "/getPoster", String.class, Map.of("id", id)
         );
         return response.getBody();
     }

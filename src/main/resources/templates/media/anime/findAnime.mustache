@@ -28,14 +28,14 @@
 
         {{#list}}
             <tr>
-                <td>{{name}}</td>
-                <td>{{russian}}</td>
+                <td>{{nameEn}}</td>
+                <td>{{nameRu}}</td>
                 <td>{{score}}</td>
                 <td>{{episodes}}</td>
                 <td>
                     <form method="post" action="./saveAnime">
                         <label>
-                            <input name="animeId" value="{{id}}" hidden>
+                            <input name="animeId" value="{{integrationId}}" hidden>
                             <input value="Добавить" type="submit">
                         </label>
                     </form>
