@@ -1,13 +1,14 @@
 package org.cowary.arttrackerfront.service;
 
-import org.cowary.arttrackerfront.entity.findRs.FindMediaRs;
+import org.cowary.arttrackerfront.entity.api.findRs.FindMediaRs;
+import org.cowary.arttrackerfront.entity.api.mediaRs.MovieRs;
 import org.cowary.arttrackerfront.entity.movie.Movie;
 import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
-public class MovieService implements MediaService<Movie>, FindService<Movie> {
+public class MovieService implements MediaService<Movie>, FindService<MovieRs> {
 
     @Autowired
     RestTemp restTemp;
@@ -15,7 +16,7 @@ public class MovieService implements MediaService<Movie>, FindService<Movie> {
 
     @Override
     public Movie getMedia(long titleId) {
-        var response = restTemp.get(
+        var response = restTemp.getWithQuery(
                 PATH + "/" + titleId, Movie.class
         );
         return response.getBody();
@@ -47,23 +48,23 @@ public class MovieService implements MediaService<Movie>, FindService<Movie> {
 
     @Override
     public FindMediaRs find(String keyword) {
-        var response = restTemp.get(
+        var response = restTemp.getWithQuery(
                 PATH + "/find", FindMediaRs.class, Map.of("keyword", keyword)
         );
         return response.getBody();
     }
 
     @Override
-    public Movie findByIntegrationId(long id) {
-        var response = restTemp.get(
-                PATH + "/getByServiceId", Movie.class, Map.of("id", id)
+    public MovieRs findByIntegrationId(long id) {
+        var response = restTemp.getWithQuery(
+                PATH + "/getByServiceId", MovieRs.class, Map.of("id", id)
         );
         return response.getBody();
     }
 
     @Override
     public String getPosterUrl(int id) {
-        var response = restTemp.get(
+        var response = restTemp.getWithQuery(
                 PATH + "/getPoster", String.class, Map.of("id", id)
         );
         return response.getBody();

@@ -1,13 +1,14 @@
 package org.cowary.arttrackerfront.service;
 
-import org.cowary.arttrackerfront.entity.findRs.FindMediaRs;
+import org.cowary.arttrackerfront.entity.api.findRs.FindMediaRs;
+import org.cowary.arttrackerfront.entity.api.mediaRs.RanobeRs;
 import org.cowary.arttrackerfront.entity.ranobe.Ranobe;
 import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
-public class RanobeService implements MediaService<Ranobe>, FindService<Ranobe> {
+public class RanobeService implements MediaService<Ranobe>, FindService<RanobeRs> {
 
     @Autowired
     RestTemp restTemp;
@@ -15,7 +16,7 @@ public class RanobeService implements MediaService<Ranobe>, FindService<Ranobe> 
 
     @Override
     public Ranobe getMedia(long titleId) {
-        var response = restTemp.get(
+        var response = restTemp.getWithQuery(
                 PATH + "/" + titleId, Ranobe.class
         );
         return response.getBody();
@@ -47,23 +48,23 @@ public class RanobeService implements MediaService<Ranobe>, FindService<Ranobe> 
 
     @Override
     public FindMediaRs find(String keyword) {
-        var response = restTemp.get(
+        var response = restTemp.getWithQuery(
                 PATH + "/find", FindMediaRs.class, Map.of("keyword", keyword)
         );
         return response.getBody();
     }
 
     @Override
-    public Ranobe findByIntegrationId(long id) {
-        var response = restTemp.get(
-                PATH + "/getByServiceId", Ranobe.class, Map.of("id", id)
+    public RanobeRs findByIntegrationId(long id) {
+        var response = restTemp.getWithQuery(
+                PATH + "/getByServiceId", RanobeRs.class, Map.of("id", id)
         );
         return response.getBody();
     }
 
     @Override
     public String getPosterUrl(int id) {
-        var response = restTemp.get(
+        var response = restTemp.getWithQuery(
                 PATH + "/getPoster", String.class, Map.of("id", id)
         );
         return response.getBody();

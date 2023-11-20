@@ -22,11 +22,10 @@ public class AddAnimeController implements AddController<Anime> {
             @RequestParam(required = false) Integer integrationId,
             Model model) {
         if (integrationId != null) {
-            var anime = animeService.findByIntegrationId(integrationId);
-            var posterUrl = animeService.getPosterUrl(integrationId);
-            model.addAttribute(anime);
+            var animeRs = animeService.findByIntegrationId(integrationId);
+            model.addAttribute(animeRs.getMedia());
             model.addAttribute("add", true);
-            model.addAttribute("image", "https://dere.shikimori.me" + posterUrl);
+            model.addAttribute("image", "https://dere.shikimori.me" + animeRs.getPosterUrl());
         }
 
         return "media/anime/addAnim";

@@ -14,7 +14,7 @@ public class BookService implements MediaService<Book> {
 
     @Override
     public Book getMedia(long titleId) {
-        var response = restTemp.get(
+        var response = restTemp.getWithQuery(
                 PATH + "/" + titleId, Book.class
         );
         return response.getBody();

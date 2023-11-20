@@ -42,10 +42,10 @@ public class FindAnimeController implements FindController<Anime> {
     @Override
     @PostMapping("/title/anime/saveAnime")
     public String save(
-            @RequestParam long id,
+            @RequestParam long integrationId,
             RedirectAttributes redirectAttributes
     ) {
-        redirectAttributes.addAttribute("animeId", id);
+        redirectAttributes.addAttribute("integrationId", integrationId);
 
         return "redirect:./add";
     }

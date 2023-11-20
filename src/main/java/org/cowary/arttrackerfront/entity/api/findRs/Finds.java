@@ -1,4 +1,4 @@
-package org.cowary.arttrackerfront.entity.findRs;
+package org.cowary.arttrackerfront.entity.api.findRs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

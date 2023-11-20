@@ -5,6 +5,7 @@ import org.springframework.http.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URL;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class RestTemp {
         return response;
     }
 
-    public <T> ResponseEntity<T> get(String url, HttpHeaders headers, Class<T> responseType) {
+    public <T> ResponseEntity<T> getWithQuery(String url, HttpHeaders headers, Class<T> responseType) {
         var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         headers.setBearerAuth(user.getToken());
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
@@ -43,7 +44,7 @@ public class RestTemp {
         );
     }
 
-    public <T> ResponseEntity<T> get(String url, Class<T> responseType) {
+    public <T> ResponseEntity<T> getWithQuery(String url, Class<T> responseType) {
         var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(user.getToken());
@@ -53,18 +54,23 @@ public class RestTemp {
         );
     }
 
-    public <T> ResponseEntity<T> get(String url, Class<T> responseType, Map<String, ?> params) {
+    public <T> ResponseEntity<T> getWithQuery(String url, Class<T> responseType, Map<String, ?> params) {
         var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(user.getToken());
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+        var builder = UriComponentsBuilder.fromUriString(url);
+        for (var entry : params.entrySet()) {
+            builder.queryParam(entry.getKey(), entry.getValue());
+        }
+        var urlWithQuery = builder.build().toString();
 
         return restTemplate.exchange(
-                url, HttpMethod.GET, httpEntity, responseType, params
+                urlWithQuery, HttpMethod.GET, httpEntity, responseType, params
         );
     }
 
-    public <T> ResponseEntity<T> get(String url, HttpHeaders headers, Map<String, ?> params, Class<T> responseType) {
+    public <T> ResponseEntity<T> getWithQuery(String url, HttpHeaders headers, Map<String, ?> params, Class<T> responseType) {
         var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         headers.setBearerAuth(user.getToken());
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);

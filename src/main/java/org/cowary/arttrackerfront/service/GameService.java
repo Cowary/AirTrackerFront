@@ -14,7 +14,7 @@ public class GameService implements MediaService<Game> {
 
     @Override
     public Game getMedia(long titleId) {
-        var response = restTemp.get(
+        var response = restTemp.getWithQuery(
                 PATH + "/" + titleId, Game.class
         );
         return response.getBody();

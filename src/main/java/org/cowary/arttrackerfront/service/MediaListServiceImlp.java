@@ -40,7 +40,7 @@ public class MediaListServiceImlp {
         Map<String, String> params = new HashMap<>();
         headers.add("userId", String.valueOf(userId));
         if (!status.isBlank()) params.put("Status", status);
-        var response = restTemp.get(Config.getBackUrl() + PATH + endpoint, headers, params, Media[].class);
+        var response = restTemp.getWithQuery(Config.getBackUrl() + PATH + endpoint, headers, params, Media[].class);
         Media[] arr = response.getBody();
         return Stream.of(arr).toList();
     }

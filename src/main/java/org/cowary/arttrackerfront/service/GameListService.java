@@ -20,7 +20,7 @@ public class GameListService implements MediaListService<Game> {
     public List<Game> getAll(long userId) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("userId", "3");
-        var response = restTemp.get(Config.getBackUrl() + PATH, headers, Game[].class);
+        var response = restTemp.getWithQuery(Config.getBackUrl() + PATH, headers, Game[].class);
         return List.of(response.getBody());
     }
 
