@@ -86,18 +86,34 @@ public class RestTemp {
         return restTemplate.postForEntity(url, request, responseType);
     }
 
-    public <T, K> ResponseEntity<T> put(String url, K body, Class<T> responseType) {
+    public <T, K> ResponseEntity<T> postWithToken(String url, K body, Class<T> responseType) {
+        var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(user.getToken());
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<K> request = new HttpEntity<>(body, headers);
+        return restTemplate.postForEntity(url, request, responseType);
+    }
+
+    public <T, K> ResponseEntity<T> put(String url, K body, Class<T> responseType) {
+        var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(user.getToken());
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<K> request = new HttpEntity<>(body, headers);
         return restTemplate.exchange(url, HttpMethod.PUT, request, responseType);
     }
 
-    public <T, K> ResponseEntity<T> delete(String url, Map<String, ?> param, Class<T> responseType) {
+    public <T, K> ResponseEntity<T> delete(String url, Map<String, ?> header, Class<T> responseType) {
+        var user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(user.getToken());
         headers.setContentType(MediaType.APPLICATION_JSON);
+        for (Map.Entry<String, ?> stringEntry : header.entrySet()) {
+            headers.add(stringEntry.getKey(), stringEntry.getValue().toString());
+        }
         HttpEntity<K> request = new HttpEntity<>(headers);
-        return restTemplate.exchange(url, HttpMethod.DELETE, request, responseType, param);
+        return restTemplate.exchange(url, HttpMethod.DELETE, request, responseType);
     }
 
 

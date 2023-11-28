@@ -21,7 +21,7 @@ public class FindAnimeController implements FindController<Anime> {
     AnimeService animeService;
 
     @Override
-    @GetMapping("title/anime/find")
+    @GetMapping("/title/anime/find")
     public String get() {
         return "media/anime/findAnime";
     }

@@ -65,7 +65,7 @@ public class AnimeService implements FindService<AnimeRs>, MediaService<Anime> {
 
     @Override
     public Anime postMedia(Anime media) {
-        var response = restTemp.post(
+        var response = restTemp.postWithToken(
                  PATH, media, Anime.class
         );
         return response.getBody();
