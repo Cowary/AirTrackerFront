@@ -1,16 +1,19 @@
 package org.cowary.arttrackerfront.service;
 
 import org.cowary.arttrackerfront.entity.book.Book;
+import org.cowary.arttrackerfront.util.Config;
 import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+@Service
 public class BookService implements MediaService<Book> {
 
     @Autowired
-    RestTemp restTemp;
-    private final String PATH = "/title/book";
+    private RestTemp restTemp;
+    private final String PATH =  Config.getBackUrl() + "/title/book";
 
     @Override
     public Book getMedia(long titleId) {

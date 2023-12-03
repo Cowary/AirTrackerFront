@@ -5,13 +5,15 @@ import org.cowary.arttrackerfront.entity.api.mediaRs.RanobeRs;
 import org.cowary.arttrackerfront.entity.ranobe.Ranobe;
 import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+@Service
 public class RanobeService implements MediaService<Ranobe>, FindService<RanobeRs> {
 
     @Autowired
-    RestTemp restTemp;
+    private RestTemp restTemp;
     private final String PATH = "/title/ranobe";
 
     @Override
@@ -62,11 +64,4 @@ public class RanobeService implements MediaService<Ranobe>, FindService<RanobeRs
         return response.getBody();
     }
 
-    @Override
-    public String getPosterUrl(int id) {
-        var response = restTemp.getWithQuery(
-                PATH + "/getPoster", String.class, Map.of("id", id)
-        );
-        return response.getBody();
-    }
 }

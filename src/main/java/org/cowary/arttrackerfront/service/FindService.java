@@ -7,5 +7,4 @@ public interface FindService<T extends MediaRs> {
 
     FindMediaRs find(String keyword);
     T findByIntegrationId(long id);
-    String getPosterUrl(int id);
 }

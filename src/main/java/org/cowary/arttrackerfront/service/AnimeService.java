@@ -48,14 +48,6 @@ public class AnimeService implements FindService<AnimeRs>, MediaService<Anime> {
     }
 
     @Override
-    public String getPosterUrl(int id) {
-        var response = restTemp.getWithQuery(
-                 PATH + "/getPoster", String.class, Map.of("id", id)
-        );
-        return response.getBody();
-    }
-
-    @Override
     public Anime getMedia(long titleId) {
         var response = restTemp.getWithQuery(
                  PATH + "/" + titleId, Anime.class

@@ -1,4 +1,4 @@
-package org.cowary.arttrackerfront.controller.media.anime;
+package org.cowary.arttrackerfront.controller.media.controller.anime;
 
 import org.cowary.arttrackerfront.controller.media.EditController;
 import org.cowary.arttrackerfront.entity.anime.Anime;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EditAnimeController implements EditController<Anime> {
 
     @Autowired
-    AnimeService animeService;
+    private AnimeService animeService;
 
     @Override
     @GetMapping("/title/anime/edit")

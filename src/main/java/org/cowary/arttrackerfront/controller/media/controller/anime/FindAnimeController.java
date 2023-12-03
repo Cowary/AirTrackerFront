@@ -1,4 +1,4 @@
-package org.cowary.arttrackerfront.controller.media.anime;
+package org.cowary.arttrackerfront.controller.media.controller.anime;
 
 import org.cowary.arttrackerfront.controller.media.FindController;
 import org.cowary.arttrackerfront.entity.anime.Anime;
@@ -22,13 +22,13 @@ public class FindAnimeController implements FindController<Anime> {
 
     @Override
     @GetMapping("/title/anime/find")
-    public String get() {
+    public String searchPage() {
         return "media/anime/findAnime";
     }
 
     @Override
     @PostMapping("/title/anime/find")
-    public String find(
+    public String search(
             @ModelAttribute("anime") Anime media,
             Model model
     ) {

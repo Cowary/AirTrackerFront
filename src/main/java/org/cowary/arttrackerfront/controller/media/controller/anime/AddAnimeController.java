@@ -1,4 +1,4 @@
-package org.cowary.arttrackerfront.controller.media.anime;
+package org.cowary.arttrackerfront.controller.media.controller.anime;
 
 import org.cowary.arttrackerfront.controller.media.AddController;
 import org.cowary.arttrackerfront.entity.anime.Anime;
@@ -15,11 +15,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AddAnimeController implements AddController<Anime> {
 
     @Autowired
-    AnimeService animeService;
+    private AnimeService animeService;
 
     @Override
     @GetMapping("/title/anime/add")
-    public String get(
+    public String add(
             @RequestParam(required = false) Integer integrationId,
             Model model) {
         if (integrationId != null) {
@@ -34,7 +34,7 @@ public class AddAnimeController implements AddController<Anime> {
 
     @Override
     @PostMapping("/title/anime/add")
-    public String post(Anime media, RedirectAttributes redirectAttributes) {
+    public String save(Anime media, RedirectAttributes redirectAttributes) {
         var response = animeService.postMedia(media);
         redirectAttributes.addAttribute("id", response.getId());
 

@@ -5,13 +5,15 @@ import org.cowary.arttrackerfront.entity.api.mediaRs.TvRs;
 import org.cowary.arttrackerfront.entity.tv.Tv;
 import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+@Service
 public class TvService implements MediaService<Tv>, FindService<TvRs> {
 
     @Autowired
-    RestTemp restTemp;
+    private RestTemp restTemp;
     private final String PATH = "/title/tv";
 
     @Override
@@ -58,14 +60,6 @@ public class TvService implements MediaService<Tv>, FindService<TvRs> {
     public TvRs findByIntegrationId(long id) {
         var response = restTemp.getWithQuery(
                 PATH + "/getByServiceId", TvRs.class, Map.of("id", id)
-        );
-        return response.getBody();
-    }
-
-    @Override
-    public String getPosterUrl(int id) {
-        var response = restTemp.getWithQuery(
-                PATH + "/getPoster", String.class, Map.of("id", id)
         );
         return response.getBody();
     }
