@@ -81,8 +81,8 @@ public class MangaController implements AddController<Manga>, EditController<Man
 
     @Override
     @PostMapping("/saveManga")
-    public String save(long id, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addAttribute("integrationId", id);
+    public String save(long integrationId, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("integrationId", integrationId);
         return "redirect:./add";
     }
 }

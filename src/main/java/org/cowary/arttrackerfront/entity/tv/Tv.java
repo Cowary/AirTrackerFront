@@ -19,19 +19,13 @@ public class Tv extends Media {
     private Long id;
     private String originalTitle;
     private String title;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate releaseDate;
     private Integer releaseYear;
-    private String status;
     private Integer score;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate endDate;
     private Integer seasons;
-    private Integer seasonsEnd;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastUpd;
     private Long usrId;
-    
+    private Integer integrationId;
     private String type = "Tv";
 
     public Tv(String originalTitle, String title, Integer releaseYear, Integer seasons) {

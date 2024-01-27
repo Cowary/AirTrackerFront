@@ -27,7 +27,7 @@ public class MangaService implements MediaService<Manga>, FindService<MangaRs> {
 
     @Override
     public Manga postMedia(Manga media) {
-        var response = restTemp.post(
+        var response = restTemp.postWithToken(
                 PATH, media, Manga.class
         );
         return response.getBody();

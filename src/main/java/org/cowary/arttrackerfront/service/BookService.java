@@ -25,7 +25,7 @@ public class BookService implements MediaService<Book> {
 
     @Override
     public Book postMedia(Book media) {
-        var response = restTemp.post(
+        var response = restTemp.postWithToken(
                 PATH, media, Book.class
         );
         return response.getBody();

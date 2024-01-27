@@ -20,7 +20,7 @@
             Оценка: <input name="score" type="number" min="0" max="5"  {{#movie.score}} value="{{movie.score}}" {{/movie.score}} ><br>
             Дата выхода: <input name="releaseYear" type="number" {{#movie}} value="{{movie.releaseYear}}" {{/movie}}><br>
             Длительность: <input name="duration" type="number" min="0" max="999" {{#movie.duration}} value="{{movie.duration}}" {{/movie.duration}}><br>
-            <input name="integId" type="number" {{#integId}} value="{{integId}}" {{/integId}} hidden>
+            <input name="integrationId" type="number" {{#movie}} value="{{movie.integrationId}}" {{/movie}} hidden>
             <input name="usrId" {{#movie.usrId}} value="{{movie.usrId}}" {{/movie.usrId}} hidden>
         </label>
         <label>

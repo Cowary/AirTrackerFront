@@ -26,7 +26,7 @@ public class RanobeService implements MediaService<Ranobe>, FindService<RanobeRs
 
     @Override
     public Ranobe postMedia(Ranobe media) {
-        var response = restTemp.post(
+        var response = restTemp.postWithToken(
                 PATH, media, Ranobe.class
         );
         return response.getBody();

@@ -25,14 +25,14 @@
 
         {{#list}}
             <tr>
-                <td>{{name}}</td>
-                <td>{{russian}}</td>
+                <td>{{nameEn}}</td>
+                <td>{{nameRu}}</td>
                 <td>{{score}}</td>
-                <td>{{chapters}}</td>
+                <td>{{episodes}}</td>
                 <td>
                     <form method="post" action="./saveManga">
                         <label>
-                            <input name="mangaId" value="{{id}}" hidden>
+                            <input name="integrationId" value="{{integrationId}}" hidden>
                             <input value="Добавить" type="submit">
                         </label>
                     </form>

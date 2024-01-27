@@ -26,7 +26,7 @@ public class TvService implements MediaService<Tv>, FindService<TvRs> {
 
     @Override
     public Tv postMedia(Tv media) {
-        var response = restTemp.post(
+        var response = restTemp.postWithToken(
                 PATH, media, Tv.class
         );
         return response.getBody();

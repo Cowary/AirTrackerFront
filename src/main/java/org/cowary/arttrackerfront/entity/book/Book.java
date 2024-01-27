@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
-
 public class Book extends Media {
 
 

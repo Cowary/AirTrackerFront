@@ -19,8 +19,6 @@ public class Movie extends Media {
     private Long id;
     private String originalTitle;
     private String title;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate releaseDate;
     private Integer releaseYear;
     private Integer duration;
     private String status;
@@ -30,7 +28,7 @@ public class Movie extends Media {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastUpd;
     private Long usrId;
-    
+    private Integer integrationId;
     private String type = "Movie";
 
     public Movie(String originalTitle, String title, int releaseYear, Integer duration) {

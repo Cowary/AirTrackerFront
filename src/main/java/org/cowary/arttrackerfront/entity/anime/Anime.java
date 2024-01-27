@@ -34,7 +34,6 @@ public class Anime extends Media {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastUpd;
     private Long usrId;
-    
     private String type = "Anime";
 
     public Anime(String originalTitle, String title, Integer episodes, LocalDate releaseDate, Long shikiId, Integer duration) {

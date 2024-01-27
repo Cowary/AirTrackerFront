@@ -36,6 +36,7 @@ public class MovieController implements AddController<Movie>, EditController<Mov
     @PostMapping("/add")
     public String save(Movie media, RedirectAttributes redirectAttributes) {
         var response = movieService.postMedia(media);
+        redirectAttributes.addAttribute("id", response.getId());
         return "redirect:../movie/edit";
     }
 
@@ -43,7 +44,6 @@ public class MovieController implements AddController<Movie>, EditController<Mov
     @GetMapping("/edit")
     public String get(@RequestParam long id, Model model) {
         var movie = movieService.getMedia(id);
-
         model.addAttribute("movie", movie);
         model.addAttribute("edit", true);
         return "media/movie/add";
@@ -70,7 +70,7 @@ public class MovieController implements AddController<Movie>, EditController<Mov
     }
 
     @Override
-    @PostMapping("/find")
+//    @PostMapping("/find")
     public String search(@ModelAttribute Movie media, Model model) {
         Objects.requireNonNull(media.getOriginalTitle());
         var list = movieService.find(media.getOriginalTitle());
@@ -78,10 +78,18 @@ public class MovieController implements AddController<Movie>, EditController<Mov
         return "media/movie/find";
     }
 
+    @PostMapping("/find")
+    public String search(String keyword, Model model) {
+        Objects.requireNonNull(keyword);
+        var list = movieService.find(keyword);
+        model.addAttribute("list", list.getFindMedia());
+        return "media/movie/find";
+    }
+
     @Override
     @PostMapping("/save")
-    public String save(@RequestParam long id, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addAttribute("integrationId", id);
+    public String save(@RequestParam long integrationId, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("integrationId", integrationId);
         return "redirect:./add";
     }
 }

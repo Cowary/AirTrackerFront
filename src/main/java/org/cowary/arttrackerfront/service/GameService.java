@@ -25,7 +25,7 @@ public class GameService implements MediaService<Game> {
 
     @Override
     public Game postMedia(Game media) {
-        var response = restTemp.post(
+        var response = restTemp.postWithToken(
                 PATH, media, Game.class
         );
         return response.getBody();

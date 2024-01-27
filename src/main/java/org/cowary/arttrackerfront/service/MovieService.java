@@ -27,7 +27,7 @@ public class MovieService implements MediaService<Movie>, FindService<MovieRs> {
 
     @Override
     public Movie postMedia(Movie media) {
-        var response = restTemp.post(
+        var response = restTemp.postWithToken(
                 PATH, media, Movie.class
         );
         return response.getBody();

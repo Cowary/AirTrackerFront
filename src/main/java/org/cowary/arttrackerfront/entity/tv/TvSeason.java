@@ -18,8 +18,7 @@ public class TvSeason extends Media {
 
     private Long id;
     private String title;
-    private Integer episodes;
-    private Integer episodesEnd;
+    private Integer number;
     private String status;
     private Integer score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -28,20 +27,7 @@ public class TvSeason extends Media {
     private LocalDate lastUpd;
     private Long tvId;
     private Long usrId;
-    private String originalTitle;
-    private Integer seasons;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate releaseDate;
     private Integer releaseYear;
-    private Integer seasonsEnd;
-    
-    private static final String type = "Tv";
 
-    public void setCommonField(Tv tv) {
-        originalTitle = tv.getOriginalTitle();
-        seasons = tv.getSeasons();
-        releaseDate = tv.getReleaseDate();
-        releaseYear = tv.getReleaseYear();
-        seasonsEnd = tv.getSeasonsEnd();
-    }
+    private static final String type = "Tv";
 }
