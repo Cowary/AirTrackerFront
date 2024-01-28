@@ -11,38 +11,26 @@
     <div>
         <a href="../../title"><--</a>
     </div>
-    <form method="post" >
+    <form method="post" action="./add">
         <label>
-            Название тома: <input name="titleVolume" size="50" {{#titleVolume}} value="{{titleVolume}} {{/titleVolume}}">
-            Название серии: <input name="title" size="50" {{#ranobe}} value="{{ranobe.title}}" {{/ranobe}}><br>
+            Название тома: <input name="titleVolume" size="50" {{#ranobeVolume.title}} value="{{ranobeVolume.title}}" {{/ranobeVolume.title}}>
+            Номер тома: <input name="number" type="number" size="10" {{#ranobeVolume.number}} value="{{ranobeVolume.number}}" {{/ranobeVolume.number}}> <br>
+            Название серии: <input name="titleRanobe" size="50" {{#ranobe}} value="{{ranobe.title}}" {{/ranobe}}><br>
             Оригинальное название: <input name="originalTitle" size="50" {{#ranobe}} value="{{ranobe.originalTitle}}" {{/ranobe}}><br>
             Статус: <input name="status" list="statusList" size="10" {{#ranobeVolume.status}} value="{{ranobeVolume.status}}" {{/ranobeVolume.status}} ><br>
             Оценка: <input name="score" type="number" min="1" max="5"  {{#ranobeVolume.score}} value="{{ranobeVolume.score}}" {{/ranobeVolume.score}} ><br>
-            Глав: <input name="chapters" type="number" min="0" max="999"  {{#ranobeVolume.chapters}} value="{{ranobeVolume.chapters}}" {{/ranobeVolume.chapters}}>
             Томов: <input name="volumes" type="number" min="0" max="999" {{#ranobe.volumes}} value="{{ranobe.volumes}}" {{/ranobe.volumes}}><br>
             Дата выхода: <input name="releaseDate" type="date" {{#ranobe.releaseDate}} value="{{ranobe.releaseDate}}" {{/ranobe.releaseDate}}>
             <input name="shikiId" {{#ranobe}} value="{{ranobe.shikiId}}" {{/ranobe}} hidden> <br>
             <input name="releaseYear" {{#ranobe}} value="{{ranobe.releaseYear}}" {{/ranobe}} hidden>
-            <input name="ranobeId" {{#ranobeId}} value="{{ranobeId}}" {{/ranobeId}} hidden>
-            <input name="ranobeVolumeId" {{#ranobeVolumeId}} value="{{ranobeVolumeId}}" {{/ranobeVolumeId}} hidden>
+            <input name="ranobeId" {{#ranobe.id}} value="{{ranobe.id}}" {{/ranobe.id}} hidden>
             <input name="usrId" {{#ranobeVolume.usrId}} value="{{ranobeVolume.usrId}}" {{/ranobeVolume.usrId}} hidden>
+            <input name="ranobeUsrId" {{#ranobe.usrId}} value="{{ranobe.usrId}}" {{/ranobe.usrId}} hidden>
+            <input name="ranobeVolumeId" {{#ranobeVolume}} value="{{ranobeVolume.id}}" {{/ranobeVolume}} hidden>
         </label>
         <label>
             Дата окончания просмотра: <input name="endDate" type="date" {{#ranobeVolume.endDate}} value="{{ranobeVolume.endDate}}" {{/ranobeVolume.endDate}}> <br>
-            Прочитано томов: <input name="volumesEnd" type="number" min="0" max="999" {{#ranobe.volumesEnd}} value="{{ranobe.volumesEnd}}" {{/ranobe.volumesEnd}}>
-            Прочитано глав: <input name="chaptersEnd" type="number" min="0" max="999" {{#ranobeVolume.chaptersEnd}} value="{{ranobeVolume.chaptersEnd}}" {{/ranobeVolume.chaptersEnd}}>
         </label><br>
-        <table>
-            <tr>
-                Студии:
-            </tr>
-            {{#studioList}}
-                <tr>
-                    {{name}}
-                </tr>
-            {{/studioList}}
-
-        </table>
         <input value="Сохранить" type="submit">
         <br>
         {{#add}}

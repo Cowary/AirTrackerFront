@@ -2,7 +2,8 @@ package org.cowary.arttrackerfront.service;
 
 import org.cowary.arttrackerfront.entity.api.findRs.FindMediaRs;
 import org.cowary.arttrackerfront.entity.api.mediaRs.RanobeRs;
-import org.cowary.arttrackerfront.entity.ranobe.Ranobe;
+import org.cowary.arttrackerfront.entity.ranobe.RanobeVolume;
+import org.cowary.arttrackerfront.util.Config;
 import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,32 +11,32 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class RanobeService implements MediaService<Ranobe>, FindService<RanobeRs> {
+public class RanobeService implements MediaService<RanobeVolume>, FindService<RanobeRs> {
 
     @Autowired
     private RestTemp restTemp;
-    private final String PATH = "/title/ranobe";
+    private final String PATH = Config.getBackUrl() + "/title/ranobe";
 
     @Override
-    public Ranobe getMedia(long titleId) {
+    public RanobeVolume getMedia(long titleId) {
         var response = restTemp.getWithQuery(
-                PATH + "/" + titleId, Ranobe.class
+                PATH + "/" + titleId, RanobeVolume.class
         );
         return response.getBody();
     }
 
     @Override
-    public Ranobe postMedia(Ranobe media) {
+    public RanobeVolume postMedia(RanobeVolume media) {
         var response = restTemp.postWithToken(
-                PATH, media, Ranobe.class
+                PATH, media, RanobeVolume.class
         );
         return response.getBody();
     }
 
     @Override
-    public Ranobe putMedia(Ranobe media) {
+    public RanobeVolume putMedia(RanobeVolume media) {
         var response = restTemp.put(
-                PATH, media, Ranobe.class
+                PATH, media, RanobeVolume.class
         );
         return response.getBody();
     }

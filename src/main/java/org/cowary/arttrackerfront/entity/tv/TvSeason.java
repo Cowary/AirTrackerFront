@@ -25,7 +25,7 @@ public class TvSeason extends Media {
     private LocalDate endDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastUpd;
-    private Long tvId;
+    private Tv tv;
     private Long usrId;
     private Integer releaseYear;
 

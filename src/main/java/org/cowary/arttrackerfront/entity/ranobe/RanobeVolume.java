@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
-
 public class RanobeVolume extends Media {
 
 
@@ -25,7 +24,7 @@ public class RanobeVolume extends Media {
     private LocalDate endDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastUpd;
-    private Long ranobeId;
+    private Ranobe ranobe;
     private Long usrId;
     private static final String type = "Ranobe";
 }
