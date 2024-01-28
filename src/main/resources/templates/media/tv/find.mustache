@@ -31,9 +31,9 @@
             <td>{{#year}} {{year}} {{/year}}</td>
             <td>{{#rating}} {{rating}} {{/rating}}</td>
             <td>
-                <form method="post" action="./save">
+                <form method="post" action="./saveTv">
                     <label>
-                        <input name="filmId" value="{{integrationId}}">
+                        <input name="integrationId" value="{{integrationId}}">
                         <input value="Добавить" type="submit">
                     </label>
                 </form>

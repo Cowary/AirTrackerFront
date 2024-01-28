@@ -2,7 +2,7 @@ package org.cowary.arttrackerfront.service;
 
 import org.cowary.arttrackerfront.entity.api.findRs.FindMediaRs;
 import org.cowary.arttrackerfront.entity.api.mediaRs.TvRs;
-import org.cowary.arttrackerfront.entity.tv.Tv;
+import org.cowary.arttrackerfront.entity.tv.TvSeason;
 import org.cowary.arttrackerfront.util.Config;
 import org.cowary.arttrackerfront.util.RestTemp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,32 +11,32 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class TvService implements MediaService<Tv>, FindService<TvRs> {
+public class TvService implements MediaService<TvSeason>, FindService<TvRs> {
 
     @Autowired
     private RestTemp restTemp;
     private final String PATH = Config.getBackUrl() + "/title/tv";
 
     @Override
-    public Tv getMedia(long titleId) {
+    public TvSeason getMedia(long titleId) {
         var response = restTemp.getWithQuery(
-                PATH + "/" + titleId, Tv.class
+                PATH + "/" + titleId, TvSeason.class
         );
         return response.getBody();
     }
 
     @Override
-    public Tv postMedia(Tv media) {
+    public TvSeason postMedia(TvSeason media) {
         var response = restTemp.postWithToken(
-                PATH, media, Tv.class
+                PATH, media, TvSeason.class
         );
         return response.getBody();
     }
 
     @Override
-    public Tv putMedia(Tv media) {
+    public TvSeason putMedia(TvSeason media) {
         var response = restTemp.put(
-                PATH, media, Tv.class
+                PATH, media, TvSeason.class
         );
         return response.getBody();
     }
