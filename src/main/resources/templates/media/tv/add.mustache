@@ -22,7 +22,7 @@
             Количество серий: <input name="episodes" type="number" min="0" max="999" {{#tvSeason.episodes}} value="{{tvSeason.episodes}}" {{/tvSeason.episodes}}>
             Просмотренной серий: <input name="episodesEnd" type="number" min="0" max="999" {{#tvSeason.episodesEnd}} value="{{tvSeason.episodesEnd}}" {{/tvSeason.episodesEnd}}><br>
             Статус: <input name="status" list="statusList" size="10" {{#tvSeason.status}} value="{{tvSeason.status}}" {{/tvSeason.status}}><br>
-            Оценка: <input name="score" type="number" min="1" max="5"  {{#tvSeason.score}} value="{{tvSeason.score}}" {{/tvSeason.score}} ><br>
+            Оценка: <input name="score" type="number" min="1" max="10"  {{#tvSeason.score}} value="{{tvSeason.score}}" {{/tvSeason.score}} ><br>
             Дата выхода: <input name="releaseYear" type="number" {{#tv.releaseYear}} value="{{tv.releaseYear}}" {{/tv.releaseYear}}><br>
             <input name="integrationId" type="number" value="{{#tv.integrationId}}{{tv.integrationId}}{{/tv.integrationId}}" hidden>
             <input name="tvId" type="number" {{#tv.id}} value="{{tv.id}}" {{/tv.id}} hidden>

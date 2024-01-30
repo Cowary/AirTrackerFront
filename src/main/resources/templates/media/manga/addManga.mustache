@@ -17,7 +17,7 @@
             Название: <input name="title" size="50" {{#manga}} value="{{manga.title}}" {{/manga}}><br>
             Оригинальное название: <input name="originalTitle" size="50" {{#manga}} value="{{manga.originalTitle}}" {{/manga}}><br>
             Статус: <input name="status" list="statusList" size="10" {{#manga.status}} value="{{manga.status}}" {{/manga.status}} ><br>
-            Оценка: <input name="score" type="number" min="0" max="5"  {{#manga.score}} value="{{manga.score}}" {{/manga.score}} ><br>
+            Оценка: <input name="score" type="number" min="1" max="10"  {{#manga.score}} value="{{manga.score}}" {{/manga.score}} ><br>
             Главы: <input name="chapters" size="4" {{#manga.chapters}} value="{{manga.chapters}}" {{/manga.chapters}}>
             Тома: <input name="volumes" size="4" {{#manga.volumes}} value="{{manga.volumes}}" {{/manga.volumes}}><br>
             Дата выхода: <input name="releaseDate" type="date" {{#manga.releaseDate}} value="{{manga.releaseDate}}" {{/manga.releaseDate}}><br>

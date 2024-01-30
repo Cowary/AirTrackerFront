@@ -18,7 +18,7 @@
             Название: <input name="title" size="50" {{#anime}} value="{{anime.title}}" {{/anime}}><br>
             Оригинальное название: <input name="originalTitle" size="50" {{#anime}} value="{{anime.originalTitle}}" {{/anime}}><br>
             Статус: <input name="status" list="statusList" size="10" {{#anime.status}} value="{{anime.status}}" {{/anime.status}} ><br>
-            Оценка: <input name="score" type="number" min="1" max="5"  {{#anime.score}} value="{{anime.score}}" {{/anime.score}} ><br>
+            Оценка: <input name="score" type="number" min="1" max="10"  {{#anime.score}} value="{{anime.score}}" {{/anime.score}} ><br>
             Эпизоды: <input name="episodes" type="number" min="0" max="999" {{#anime}} value="{{anime.episodes}}" {{/anime}}><br>
             Длительность эпизода: <input name="duration" type="number" min="0" max="999" {{#anime.duration}} value="{{anime.duration}}" {{/anime.duration}}><br>
             Дата выхода: <input name="releaseDate" type="date" {{#anime}} value="{{anime.releaseDate}}" {{/anime}}>

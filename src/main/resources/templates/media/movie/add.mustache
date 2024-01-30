@@ -17,7 +17,7 @@
             Название: <input name="title" size="50" {{#movie.title}} value="{{movie.title}}" {{/movie.title}}><br>
             Оригинальное название: <input name="originalTitle" size="50" {{#movie.originalTitle}} value="{{movie.originalTitle}}" {{/movie.originalTitle}}><br>
             Статус: <input name="status" list="statusList" size="10" {{#movie.status}} value="{{movie.status}}" {{/movie.status}} ><br>
-            Оценка: <input name="score" type="number" min="0" max="5"  {{#movie.score}} value="{{movie.score}}" {{/movie.score}} ><br>
+            Оценка: <input name="score" type="number" min="1" max="10"  {{#movie.score}} value="{{movie.score}}" {{/movie.score}} ><br>
             Дата выхода: <input name="releaseYear" type="number" {{#movie}} value="{{movie.releaseYear}}" {{/movie}}><br>
             Длительность: <input name="duration" type="number" min="0" max="999" {{#movie.duration}} value="{{movie.duration}}" {{/movie.duration}}><br>
             <input name="integrationId" type="number" {{#movie}} value="{{movie.integrationId}}" {{/movie}} hidden>
