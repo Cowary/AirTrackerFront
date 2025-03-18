@@ -1,5 +1,6 @@
 package org.cowary.arttrackerfront.service;
 
+import org.cowary.arttrackerfront.config.ConfigApp;
 import org.cowary.arttrackerfront.entity.game.Game;
 import org.cowary.arttrackerfront.util.Config;
 import org.cowary.arttrackerfront.util.RestTemp;
@@ -14,13 +15,15 @@ public class GameListService implements MediaListService<Game> {
 
     @Autowired
     RestTemp restTemp;
-    private final String PATH = "/title/anime";
+    @Autowired
+    private ConfigApp configApp;
+    private String PATH = "/title/anime";
 
     @Override
     public List<Game> getAll(long userId) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("userId", "3");
-        var response = restTemp.getWithQuery(Config.getBackUrl() + PATH, headers, Game[].class);
+        var response = restTemp.getWithQuery(configApp.getBackUrl() + PATH, headers, Game[].class);
         return List.of(response.getBody());
     }
 

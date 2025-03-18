@@ -1,5 +1,6 @@
 package org.cowary.arttrackerfront.service;
 
+import org.cowary.arttrackerfront.config.ConfigApp;
 import org.cowary.arttrackerfront.entity.anime.Anime;
 import org.cowary.arttrackerfront.entity.api.findRs.FindMediaRs;
 import org.cowary.arttrackerfront.entity.api.mediaRs.AnimeRs;
@@ -18,18 +19,20 @@ public class AnimeService implements FindService<AnimeRs>, MediaService<Anime> {
 
     @Autowired
     private RestTemp restTemp;
-    private final String PATH = Config.getBackUrl() + "/title/anime";
+    @Autowired
+    private ConfigApp configApp;
+    private final String PATH = "/title/anime";
 
     public List<Anime> getAllByUsrId(long userId) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("userId", "3");
-        var response = restTemp.getWithQuery(Config.getBackUrl() + PATH, headers, Anime[].class);
+        var response = restTemp.getWithQuery(configApp.getBackUrl() + PATH, headers, Anime[].class);
         return List.of(response.getBody());
     }
 
     @Override
     public FindMediaRs find(String keyword) {
-        var uri = UriComponentsBuilder.fromUriString(PATH + "/find")
+        var uri = UriComponentsBuilder.fromUriString(configApp.getBackUrl() + PATH + "/find")
                 .queryParam("keyword", keyword)
                 .build()
                 .toString();
@@ -42,7 +45,7 @@ public class AnimeService implements FindService<AnimeRs>, MediaService<Anime> {
     @Override
     public AnimeRs findByIntegrationId(long id) {
         var response = restTemp.getWithQuery(
-                 PATH + "/getByServiceId", AnimeRs.class, Map.of("id", id)
+                 configApp.getBackUrl() + PATH + "/getByServiceId", AnimeRs.class, Map.of("id", id)
         );
         return response.getBody();
     }
@@ -50,7 +53,7 @@ public class AnimeService implements FindService<AnimeRs>, MediaService<Anime> {
     @Override
     public Anime getMedia(long titleId) {
         var response = restTemp.getWithQuery(
-                 PATH + "/" + titleId, Anime.class
+                 configApp.getBackUrl() + PATH + "/" + titleId, Anime.class
         );
         return response.getBody();
     }
@@ -58,7 +61,7 @@ public class AnimeService implements FindService<AnimeRs>, MediaService<Anime> {
     @Override
     public Anime postMedia(Anime media) {
         var response = restTemp.postWithToken(
-                 PATH, media, Anime.class
+                 configApp.getBackUrl() + PATH, media, Anime.class
         );
         return response.getBody();
     }
@@ -66,7 +69,7 @@ public class AnimeService implements FindService<AnimeRs>, MediaService<Anime> {
     @Override
     public Anime putMedia(Anime media) {
         var response = restTemp.put(
-                 PATH, media, Anime.class
+                 configApp.getBackUrl() + PATH, media, Anime.class
         );
         return response.getBody();
     }
@@ -74,7 +77,7 @@ public class AnimeService implements FindService<AnimeRs>, MediaService<Anime> {
     @Override
     public String deleteMedia(long id) {
         var response = restTemp.delete(
-                 PATH, Map.of("id", id), String.class
+                 configApp.getBackUrl() + PATH, Map.of("id", id), String.class
         );
         return response.getBody();
     }

@@ -1,5 +1,6 @@
 package org.cowary.arttrackerfront.service;
 
+import org.cowary.arttrackerfront.config.ConfigApp;
 import org.cowary.arttrackerfront.entity.game.Game;
 import org.cowary.arttrackerfront.util.Config;
 import org.cowary.arttrackerfront.util.RestTemp;
@@ -13,12 +14,14 @@ public class GameService implements MediaService<Game> {
 
     @Autowired
     private RestTemp restTemp;
-    private final String PATH =  Config.getBackUrl() + "/title/game";
+    @Autowired
+    private ConfigApp configApp;
+    private final String PATH = "/title/game";
 
     @Override
     public Game getMedia(long titleId) {
         var response = restTemp.getWithQuery(
-                PATH + "/" + titleId, Game.class
+                configApp.getBackUrl() + PATH + "/" + titleId, Game.class
         );
         return response.getBody();
     }
@@ -26,7 +29,7 @@ public class GameService implements MediaService<Game> {
     @Override
     public Game postMedia(Game media) {
         var response = restTemp.postWithToken(
-                PATH, media, Game.class
+                configApp.getBackUrl() + PATH, media, Game.class
         );
         return response.getBody();
     }
@@ -34,7 +37,7 @@ public class GameService implements MediaService<Game> {
     @Override
     public Game putMedia(Game media) {
         var response = restTemp.put(
-                PATH, media, Game.class
+                configApp.getBackUrl() + PATH, media, Game.class
         );
         return response.getBody();
     }
@@ -42,7 +45,7 @@ public class GameService implements MediaService<Game> {
     @Override
     public String deleteMedia(long id) {
         var response = restTemp.delete(
-                PATH, Map.of("id", id), String.class
+                configApp.getBackUrl() + PATH, Map.of("id", id), String.class
         );
         return response.getBody();
     }

@@ -1,5 +1,6 @@
 package org.cowary.arttrackerfront.service;
 
+import org.cowary.arttrackerfront.config.ConfigApp;
 import org.cowary.arttrackerfront.entity.book.Book;
 import org.cowary.arttrackerfront.util.Config;
 import org.cowary.arttrackerfront.util.RestTemp;
@@ -13,12 +14,14 @@ public class BookService implements MediaService<Book> {
 
     @Autowired
     private RestTemp restTemp;
-    private final String PATH =  Config.getBackUrl() + "/title/book";
+    @Autowired
+    private ConfigApp configApp;
+    private final String PATH = "/title/book";
 
     @Override
     public Book getMedia(long titleId) {
         var response = restTemp.getWithQuery(
-                PATH + "/" + titleId, Book.class
+                configApp.getBackUrl() + PATH + "/" + titleId, Book.class
         );
         return response.getBody();
     }
@@ -26,7 +29,7 @@ public class BookService implements MediaService<Book> {
     @Override
     public Book postMedia(Book media) {
         var response = restTemp.postWithToken(
-                PATH, media, Book.class
+                configApp.getBackUrl() + PATH, media, Book.class
         );
         return response.getBody();
     }
@@ -34,7 +37,7 @@ public class BookService implements MediaService<Book> {
     @Override
     public Book putMedia(Book media) {
         var response = restTemp.put(
-                PATH, media, Book.class
+                configApp.getBackUrl() + PATH, media, Book.class
         );
         return response.getBody();
     }
@@ -42,7 +45,7 @@ public class BookService implements MediaService<Book> {
     @Override
     public String deleteMedia(long id) {
         var response = restTemp.delete(
-                PATH, Map.of("id", id), String.class
+                configApp.getBackUrl() + PATH, Map.of("id", id), String.class
         );
         return response.getBody();
     }

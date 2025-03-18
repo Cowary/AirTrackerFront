@@ -1,5 +1,6 @@
 package org.cowary.arttrackerfront.service;
 
+import org.cowary.arttrackerfront.config.ConfigApp;
 import org.cowary.arttrackerfront.entity.config.AuthenticationReq;
 import org.cowary.arttrackerfront.entity.config.AuthenticationResp;
 import org.cowary.arttrackerfront.util.Config;
@@ -12,10 +13,13 @@ public class ConfigService {
 
     @Autowired
     RestTemp restTemp;
-    private final String PATH = "/api/auth/signin";
+    @Autowired
+    private ConfigApp configApp;
+    private String PATH = "/api/auth/signin";
 
     public AuthenticationResp getJwtToken(String login, String password) {
-        var response = restTemp.post(Config.getBackUrl() + PATH, new AuthenticationReq(login, password), AuthenticationResp.class);
+        System.out.println("URL: " + configApp.getBackUrl() + PATH);
+        var response = restTemp.post(configApp.getBackUrl() + PATH, new AuthenticationReq(login, password), AuthenticationResp.class);
         System.out.println(response);
         return response.getBody();
     }

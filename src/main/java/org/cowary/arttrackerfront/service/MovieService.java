@@ -1,5 +1,6 @@
 package org.cowary.arttrackerfront.service;
 
+import org.cowary.arttrackerfront.config.ConfigApp;
 import org.cowary.arttrackerfront.entity.api.findRs.FindMediaRs;
 import org.cowary.arttrackerfront.entity.api.mediaRs.MovieRs;
 import org.cowary.arttrackerfront.entity.movie.Movie;
@@ -15,12 +16,14 @@ public class MovieService implements MediaService<Movie>, FindService<MovieRs> {
 
     @Autowired
     RestTemp restTemp;
-    private final String PATH = Config.getBackUrl() + "/title/movie";
+    @Autowired
+    private ConfigApp configApp;
+    private final String PATH = "/title/movie";
 
     @Override
     public Movie getMedia(long titleId) {
         var response = restTemp.getWithQuery(
-                PATH + "/" + titleId, Movie.class
+                configApp.getBackUrl() + PATH + "/" + titleId, Movie.class
         );
         return response.getBody();
     }
@@ -28,7 +31,7 @@ public class MovieService implements MediaService<Movie>, FindService<MovieRs> {
     @Override
     public Movie postMedia(Movie media) {
         var response = restTemp.postWithToken(
-                PATH, media, Movie.class
+                configApp.getBackUrl() + PATH, media, Movie.class
         );
         return response.getBody();
     }
@@ -36,7 +39,7 @@ public class MovieService implements MediaService<Movie>, FindService<MovieRs> {
     @Override
     public Movie putMedia(Movie media) {
         var response = restTemp.put(
-                PATH, media, Movie.class
+                configApp.getBackUrl() + PATH, media, Movie.class
         );
         return response.getBody();
     }
@@ -44,7 +47,7 @@ public class MovieService implements MediaService<Movie>, FindService<MovieRs> {
     @Override
     public String deleteMedia(long id) {
         var response = restTemp.delete(
-                PATH, Map.of("id", id), String.class
+                configApp.getBackUrl() + PATH, Map.of("id", id), String.class
         );
         return response.getBody();
     }
@@ -52,7 +55,7 @@ public class MovieService implements MediaService<Movie>, FindService<MovieRs> {
     @Override
     public FindMediaRs find(String keyword) {
         var response = restTemp.getWithQuery(
-                PATH + "/find", FindMediaRs.class, Map.of("keyword", keyword)
+                configApp.getBackUrl() + PATH + "/find", FindMediaRs.class, Map.of("keyword", keyword)
         );
         return response.getBody();
     }
@@ -60,7 +63,7 @@ public class MovieService implements MediaService<Movie>, FindService<MovieRs> {
     @Override
     public MovieRs findByIntegrationId(long id) {
         var response = restTemp.getWithQuery(
-                PATH + "/getByServiceId", MovieRs.class, Map.of("id", id)
+                configApp.getBackUrl() + PATH + "/getByServiceId", MovieRs.class, Map.of("id", id)
         );
         return response.getBody();
     }

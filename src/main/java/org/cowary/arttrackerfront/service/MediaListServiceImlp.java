@@ -1,5 +1,6 @@
 package org.cowary.arttrackerfront.service;
 
+import org.cowary.arttrackerfront.config.ConfigApp;
 import org.cowary.arttrackerfront.entity.Media;
 import org.cowary.arttrackerfront.util.Config;
 import org.cowary.arttrackerfront.util.RestTemp;
@@ -17,6 +18,8 @@ public class MediaListServiceImlp {
 
     @Autowired
     RestTemp restTemp;
+    @Autowired
+    private ConfigApp configApp;
     private final String PATH = "/title/view";
 
     public List<Media> getAllByUsrId(long userId, String status) {
@@ -40,7 +43,7 @@ public class MediaListServiceImlp {
         Map<String, String> params = new HashMap<>();
         headers.add("userId", String.valueOf(userId));
         if (!status.isBlank()) params.put("Status", status);
-        var response = restTemp.getWithQuery(Config.getBackUrl() + PATH + endpoint, headers, params, Media[].class);
+        var response = restTemp.getWithQuery(configApp.getBackUrl() + PATH + endpoint, headers, params, Media[].class);
         Media[] arr = response.getBody();
         return Stream.of(arr).toList();
     }

@@ -1,0 +1,13 @@
+app:
+  back-url: localhost
+server:
+  port: 8080
+  servlet:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+    context-path: /art-tracker
+spring:
+  mustache:
+    charset: UTF-8
