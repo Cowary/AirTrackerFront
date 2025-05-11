@@ -1,5 +1,5 @@
 app:
-  back-url: localhost
+  back-url: localhost:8081/art-tracker-back
 server:
   port: 8080
   servlet:
